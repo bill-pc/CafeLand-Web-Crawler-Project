@@ -88,9 +88,19 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
 # Set settings whose default value is deprecated to a future-proof value
-REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
-TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-FEED_EXPORT_ENCODING = "utf-8"
+# REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
+# TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+# FEED_EXPORT_ENCODING = "utf-8"
 
-FEED_FORMAT='csv'
-FEED_URI='mydatascraper.csv'
+# FEED_FORMAT='csv'
+# FEED_URI='mydatascraper.csv'
+ROBOTSTXT_OBEY = True
+FEED_EXPORT_ENCODING = 'utf-8'
+AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_START_DELAY = 1
+
+ITEM_PIPELINES = {
+   "demo.pipelines.CSVDBCafeLandPipeline": 100,
+   "demo.pipelines.JsonDBCafeLandPipeline": 200,
+   "demo.pipelines.MongoDBCafeLandPipeline": 400
+}
