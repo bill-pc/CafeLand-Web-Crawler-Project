@@ -97,11 +97,11 @@ class MyscraperSpider(scrapy.Spider):
             'Thành phố': response.meta.get('city'),
             'Chủ đầu tư': response.meta.get('investor'),
             'Trạng thái': response.meta.get('status'),
-            'Diện tích': area.strip() if area else 'unknow',
-            'Ngày đăng': date.strip() if date else 'unknow',
-            'Tổng vốn đầu tư': total_investment.strip() if total_investment else 'unknow',
-            'Xếp hạng': average_rating.strip() if average_rating else 'unknow',
-            'Mô tả': moTa.strip() if moTa else 'unknow',
+            'Diện tích:': area.strip() if area else 'unknown',
+            'Ngày đăng': date.strip() if date else 'unknown',
+            'Tổng vốn đầu tư': total_investment.strip() if total_investment else 'unknown',
+            'Xếp hạng': average_rating.strip() if average_rating else 'unknown',
+            'Mô tả': moTa.strip() if moTa else 'unknown',
         }
 
 
