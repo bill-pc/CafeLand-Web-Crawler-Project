@@ -6,7 +6,7 @@ class MyscraperSpider(scrapy.Spider):
     allowed_domains = ["cafeland.vn"]
     start_urls = ["https://cafeland.vn/du-an/"]
     custom_settings = {
-        'DOWNLOAD_DELAY': 2,
+        # 'DOWNLOAD_DELAY': 2,
         'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0'
     }
 
@@ -39,9 +39,6 @@ class MyscraperSpider(scrapy.Spider):
                 street = parts[0].strip() if len(parts) > 0 else None
                 city = parts[1].strip() if len(parts) > 1 else None
                 
-                end_date = project.xpath(".//div[@class='box-type-3']//a[contains(@href, 'tel')]/@href").get()
-                if end_date:
-                    end_date = end_date.strip()
 
                 status = response.xpath(".//span[@class='duan-dang-mo-ban']/text()").get()
                 if status:
@@ -56,7 +53,6 @@ class MyscraperSpider(scrapy.Spider):
                         'street': street,
                         'city': city,
                         'investor': investor,
-                        'end_date': end_date,
                         'status': status,
 
                     })

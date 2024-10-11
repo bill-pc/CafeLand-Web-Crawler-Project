@@ -1,0 +1,21 @@
+ALTER TABLE project
+ADD CONSTRAINT pk_project PRIMARY KEY ("Mã dự án");
+
+ALTER TABLE project_types
+ADD CONSTRAINT pk_project_types PRIMARY KEY ("Mã loại dự án");
+
+ALTER TABLE project
+ADD CONSTRAINT fk_project_project_types FOREIGN KEY ("Mã loại dự án")
+REFERENCES project_types ("Mã loại dự án");
+
+ALTER TABLE location
+ADD CONSTRAINT fk_location_project FOREIGN KEY ("Mã dự án")
+REFERENCES project ("Mã dự án");
+
+ALTER TABLE status
+ADD CONSTRAINT fk_status_project FOREIGN KEY ("Mã dự án")
+REFERENCES project ("Mã dự án");
+
+ALTER TABLE project_detail
+ADD CONSTRAINT fk_project_detail_project FOREIGN KEY ("Mã dự án")
+REFERENCES project ("Mã dự án");

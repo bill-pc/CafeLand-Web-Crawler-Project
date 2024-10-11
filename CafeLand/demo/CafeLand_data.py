@@ -4,11 +4,11 @@ from pymongo import MongoClient
 
 # Kết nối MongoDB
 client = MongoClient("mongodb://localhost:27017/")
-db = client["cafeland_2"]
-collection = db["Data"]
+db = client["cafeland_clean"]
+collection = db["Clear"]
 
 # Đọc file CSV
-df = pd.read_csv(r'demo/demo/spiders/mydatascraper.csv')
+df = pd.read_csv(r'cleaned_cafeland.csv/part-00000-49b3ad0f-f262-439e-b701-b6d06a147cfa-c000.csv')
 
 # Chuyển đổi mỗi hàng thành dictionary và đổ vào MongoDB
 data = df.to_dict(orient="records")
