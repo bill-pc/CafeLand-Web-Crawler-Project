@@ -13,9 +13,9 @@ import csv
 import os
 class MongoDBCafeLandPipeline:
     def __init__(self):
-        econnect = str(os.environ['Mongo_HOST'])
-        #self.client = pymongo.MongoClient('mongodb://mymongodb:27017')
-        self.client = pymongo.MongoClient('mongodb://'+econnect+':27017')
+        econnect = os.environ.get('Mongo_HOST', 'localhost')
+        # self.client = pymongo.MongoClient('mongodb://mymongodb:27017')
+        self.client = pymongo.MongoClient(f'mongodb://{econnect}:27017')
         self.db = self.client['dbmycrawler'] #Database      
         pass
     

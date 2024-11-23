@@ -31,15 +31,19 @@ class MyscraperSpider(scrapy.Spider):
                 if investor:
                     investor = investor.strip().replace('Chủ đầu tư: ', '')
 
-                map_location = project.xpath('.//div[@class="titleProjectSeo"]/text()[2]').get()
+                # Lấy địa chỉ từ phần tử HTML
+                map_location = project.xpath('.//div[@class="titleProjectSeo"]/text()[last()]').get()
+
+                # Xử lý dữ liệu nếu có
                 if map_location:
                     map_location = map_location.strip()
-
-                parts = map_location.split(',')
-                street = parts[0].strip() if len(parts) > 0 else None
-                city = parts[1].strip() if len(parts) > 1 else None
-                
-
+            
+                    parts = map_location.split(',', 1)  
+                    street = parts[0].strip() if len(parts) > 0 else None
+                    city = parts[1].strip() if len(parts) > 1 else None
+                else:
+                    street = None
+                    city = None
                 status = response.xpath(".//span[@class='duan-dang-mo-ban']/text()").get()
                 if status:
                     status = status.strip()

@@ -4,10 +4,15 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-
-class CrawlerItem(scrapy.Item):
-    # define the fields for your item here like:
-    
-    User = scrapy.Field()
-    Comment = scrapy.Field()
-    Time = scrapy.Field()
+class UnitopItem(scrapy.Item):
+    project_type = scrapy.Field()
+    project_name = scrapy.Field()
+    street = scrapy.Field()
+    city = scrapy.Field()
+    investor = scrapy.Field()
+    status = scrapy.Field() # add new
+    area = scrapy.Field() # add new
+    date = scrapy.Field() # add new
+    total_investment = scrapy.Field() # add new
+    average_rating = scrapy.Field() # add new
+    moTa = scrapy.Field() 

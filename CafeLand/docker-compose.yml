@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: cafeland
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  web_crawler:
+    build:
+      context: .  
+      dockerfile: Dockerfile  
+    container_name: web_crawler
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: cafeland
+      DB_USER: postgres
+      DB_PASSWORD: 123
+    depends_on:
+      - postgres
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - app-network
+    command: ["python", "-m", "scrapy", "runspider", "demo/spiders/myscraper.py"]
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
